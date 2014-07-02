@@ -1,0 +1,36 @@
+{
+  "name": "mod-core-swig",
+  "version": "0.0.1",
+  "description": "Modulable core module of Swig (provides the view component)",
+  "main": "view.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m0dul4r/core-swig.git"
+  },
+  "keywords": [
+    "modulable",
+    "core",
+    "swig",
+    "core.view"
+  ],
+  "author": "Ioan CHIRIAC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m0dul4r/core-swig/issues"
+  },
+  "homepage": "https://github.com/m0dul4r/core-swig",
+  "modulable": {
+    "provides": {
+      "core": "view"
+    },
+    "consumes": {
+      "core": "app"
+    }
+  },
+  "dependencies": {
+    "swig": "^1.3.2"
+  }
+}
