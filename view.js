@@ -7,7 +7,6 @@
 
 var swig = require('swig');
 
-
 module.exports = function(imports) {
   return {
     core: {
@@ -21,7 +20,7 @@ module.exports = function(imports) {
               // rendering engine
               swig.renderFile,
               // default rendering path
-              this.config.templates + '/' + this.config.template,
+              this.config.path + '/' + this.config.template,
               // file names resolution
               this.locate
             );
