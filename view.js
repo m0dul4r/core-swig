@@ -7,40 +7,44 @@
 
 var swig = require('swig');
 
-module.exports = function(imports, modulable) {
-  
-  // declares the view component
-  modulable.provides('view')
-    .on('init', function() {
-      var self = this;
-      // configure app
-      imports.core.app.renderer(
-        // rendering engine
-        swig.renderFile,
-        // default rendering path
-        this.config.templates + '/' + this.config.template,
-        // file names resolution
-        this.locate
-      );
-      // handle swig resolution file
-      var swigFs = swig.loaders.fs();
-      var swigFsResolve = swigFs.resolve;
-      swigFs.resolve = function (to, from) {
-        result = swigFsResolve.call(this, to, from);
-        if (!fs.existsSync(result)) {
-          return self.locate(to);
-        }
-        return result;
-      };
-      // configure
-      swig.setDefaults({ 
-        cache: this.config.cache,
-        loader: swigFs
-      });
-    })
-    .method('locate', function(view) {
-      
-    })
-  ;
 
+module.exports = function(imports) {
+  return {
+    core: {
+      // declares the view component
+      view: {
+        on: {
+          ready: function() {
+            var self = this;
+            // configure app
+            imports.core.app.renderer(
+              // rendering engine
+              swig.renderFile,
+              // default rendering path
+              this.config.templates + '/' + this.config.template,
+              // file names resolution
+              this.locate
+            );
+            // handle swig resolution file
+            var swigFs = swig.loaders.fs();
+            var swigFsResolve = swigFs.resolve;
+            swigFs.resolve = function (to, from) {
+              result = swigFsResolve.call(this, to, from);
+              if (!fs.existsSync(result)) {
+                return self.locate(to);
+              }
+              return result;
+            };
+            // configure
+            swig.setDefaults({ 
+              cache: this.config.cache,
+              loader: swigFs
+            });
+          }
+        }
+        , locate: function(view) {
+        }
+      }
+    }
+  }
 };

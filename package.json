@@ -22,13 +22,13 @@
     "url": "https://github.com/m0dul4r/core-swig/issues"
   },
   "homepage": "https://github.com/m0dul4r/core-swig",
-  "modulable": {
-    "provides": {
-      "core": "view"
-    },
-    "consumes": {
-      "core": "app"
-    }
+  "plugin": {
+    "provides": [
+      "core.view"
+    ],
+    "consumes": [
+      "core.app"
+    ]
   },
   "dependencies": {
     "swig": "^1.3.2"
